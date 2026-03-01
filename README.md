@@ -124,6 +124,18 @@ Como resposta, espera-se que este endpoint responda com:
 
 Vamos propôr a seguir alguns desafios extras caso você queira testar seus conhecimentos ao máximo! Nenhum desses requisitos é obrigatório, mas são desejados e podem ser um diferencial!
 
+## 5. Oportunidades de melhoria para _reporting_ e acompanhamento
+
+Como este desafio costuma ser usado em entrevistas e também como base de estudo, vale deixar explícitas algumas oportunidades de melhoria para facilitar a evolução do projeto no dia a dia:
+
+- **Métricas de negócio do endpoint de estatística:** além do payload retornado (`count`, `sum`, `avg`, `min`, `max`), registrar métricas agregadas para acompanhar comportamento ao longo do tempo (picos de volume, janelas sem transação, variação de média).
+- **Métricas técnicas por endpoint:** latência p50/p95/p99, taxa de erro (4xx/5xx) e throughput por rota (`POST /transacao`, `DELETE /transacao`, `GET /estatistica`).
+- **Correlação de requisições:** adicionar um identificador de correlação em logs facilita investigação de incidentes e análise de fluxos entre chamadas.
+- **Sinais de qualidade de dados:** monitorar taxa de rejeição de transações inválidas (ex.: valor negativo, data futura, payload malformado) ajuda a detectar problemas de integração no cliente.
+- **Documentação de indicadores operacionais:** manter uma seção no README com os principais indicadores e seus significados acelera onboarding e torna o projeto mais amigável para quem está avaliando.
+
+> Sugestão prática: com Spring Boot, é possível começar por Actuator + Micrometer e exportar métricas para Prometheus/Grafana.
+
 1. **Testes automatizados:** Sejam unitários e/ou funcionais, testes automatizados são importantes e ajudam a evitar problemas no futuro. Se você fizer testes automatizados, atente-se na efetividade dos seus testes! Por exemplo, testar apenas os "caminhos felizes" não é muito efetivo.
 2. **Containerização:** Você consegue criar meios para disponibilizar sua aplicação como um container? _OBS: Não é necessário publicar o container da sua aplicação!_
 3. **Logs:** Sua aplicação informa o que está acontecendo enquanto ela trabalha? Isso é útil para ajudar as pessoas desenvolvedoras a solucionar eventuais problemas que possam ocorrer.
