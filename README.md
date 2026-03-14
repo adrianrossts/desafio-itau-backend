@@ -1,5 +1,54 @@
 # desafio-itau-backend
 
+## API de Transações + Estatísticas (Java 21 + Spring Boot)
+
+Implementação do desafio do Itaú com foco em **clareza de código**, **regras de negócio explícitas** e **resposta rápida em memória** (sem banco/cache externo).
+
+### O que este projeto entrega
+
+- `POST /transacao` com validação de payload, valor e data/hora
+- `DELETE /transacao` para limpar estado em memória
+- `GET /estatistica` com janela móvel dos últimos 60 segundos (`count`, `sum`, `avg`, `min`, `max`)
+- Contratos HTTP aderentes ao enunciado (`201`, `200`, `422`, `400`)
+
+### Stack
+
+- Java 21
+- Spring Boot 3.x
+- Maven
+
+### Como executar localmente
+
+```bash
+./mvnw spring-boot:run
+```
+
+Servidor padrão: `http://localhost:8080`
+
+### Exemplos rápidos
+
+Criar transação:
+
+```bash
+curl -i -X POST http://localhost:8080/transacao \
+  -H "Content-Type: application/json" \
+  -d '{"valor":123.45,"dataHora":"2026-03-14T14:20:00.000Z"}'
+```
+
+Buscar estatísticas:
+
+```bash
+curl -s http://localhost:8080/estatistica
+```
+
+Limpar transações:
+
+```bash
+curl -i -X DELETE http://localhost:8080/transacao
+```
+
+---
+
 # Itaú Unibanco - Desafio de Programação
 
 Este é um desafio bacana tanto de desenvolvimento de software quanto de engenharia de software. Queremos testar sua capacidade de construir um software com várias partes diferentes funcionando em conjunto!
